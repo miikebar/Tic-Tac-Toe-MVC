@@ -28,7 +28,7 @@ public class Board {
         populateWinningPositions();
     }
 
-    @VisibleForTesting void clear() {
+    public void clear() {
         indexesSelectedByX.clear();
         indexesSelectedByO.clear();
 
