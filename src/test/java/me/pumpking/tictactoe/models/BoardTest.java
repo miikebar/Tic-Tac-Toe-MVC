@@ -1,6 +1,5 @@
 package me.pumpking.tictactoe.models;
 
-import com.google.common.collect.Lists;
 import me.pumpking.tictactoe.GameTest;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -90,35 +89,35 @@ public class BoardTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getFieldWithInvalidCoordinates() {
-        board.getField(-1, -1);
+    public void getFieldWithInvalidIndex() {
+        board.getField(-1);
     }
 
     @Test
     public void getField() {
         board.getFields()[1] = Field.X;
-        assertThat(board.getField(1, 0)).isEqualTo(Field.X);
+        assertThat(board.getField(1)).isEqualTo(Field.X);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setFieldSelectedByWithInvalidCoordinates() {
-        board.setFieldSelectedBy(-1, -1, Field.X);
+        board.setFieldSelectedBy(-1, Field.X);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setFieldSelectedByNull() {
-        board.setFieldSelectedBy(0, 0, null);
+        board.setFieldSelectedBy(0, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setFieldSelectedByEmpty() {
-        board.setFieldSelectedBy(0, 0, Field.EMPTY);
+        board.setFieldSelectedBy(0, Field.EMPTY);
     }
 
     @Test
     public void setFieldSelectedBy() {
         int selectedIndex = 1;
-        board.setFieldSelectedBy(1, 0, Field.X);
+        board.setFieldSelectedBy(selectedIndex, Field.X);
         assertThat(board.getFields()[selectedIndex]).isEqualTo(Field.X);
         assertThat(board.getIndexesSelectedByX()).contains(selectedIndex);
     }
