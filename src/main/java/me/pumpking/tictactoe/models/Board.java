@@ -52,16 +52,15 @@ public class Board {
         return fields;
     }
 
-    public Field getField(int x, int y) {
-        Preconditions.checkArgument((x >= 0 && x < size) && (y >= 0 && y < size), "Invalid coordinates");
-        return fields[y * size + x];
+    public Field getField(int index) {
+        Preconditions.checkArgument(index >= 0 && index < size, "Invalid field index");
+        return fields[index];
     }
 
-    public void setFieldSelectedBy(int x, int y, Field type) {
-        Preconditions.checkArgument((x >= 0 && x < size) && (y >= 0 && y < size), "Invalid coordinates");
+    public void setFieldSelectedBy(int index, Field type) {
+        Preconditions.checkArgument(index >= 0 && index < size, "Invalid field index");
         Preconditions.checkArgument(type == Field.X || type == Field.O, "Cannot mark field as selected for type EMPTY");
 
-        int index = y * size + x;
         fields[index] = type;
         (type == Field.X ? indexesSelectedByX : indexesSelectedByO).add(index);
     }
