@@ -59,7 +59,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass></mainClass>
+                            <mainClass>me.pumpking.tictactoe.Game</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
