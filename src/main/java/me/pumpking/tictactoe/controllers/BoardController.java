@@ -36,4 +36,8 @@ public class BoardController extends Controller {
         return board.getWinningCombinations();
     }
 
+    public void clear() {
+        board.clear();
+    }
+
 }

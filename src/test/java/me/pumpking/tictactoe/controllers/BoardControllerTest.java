@@ -51,4 +51,10 @@ public class BoardControllerTest {
         verify(board).getWinningCombinations();
     }
 
+    @Test
+    public void clear() {
+        controller.clear();
+        verify(board).clear();
+    }
+
 }
