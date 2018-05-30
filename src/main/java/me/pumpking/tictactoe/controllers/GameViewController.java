@@ -31,7 +31,8 @@ public class GameViewController extends Controller implements EventHandler<Actio
         Button button = (Button) event.getSource();
 
         if (button.getId() != null && button.getId().equalsIgnoreCase("reset")) {
-            // TODO: reset the game
+            game.getGameController().reset();
+            
         } else {
             int index = (int) button.getProperties().get("index");
             // TODO: set field
