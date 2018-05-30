@@ -45,7 +45,7 @@ public class GameController extends Controller {
         return false;
     }
 
-    private void isGameDrawn() {
+    private boolean isGameDrawn() {
 
     }
 
