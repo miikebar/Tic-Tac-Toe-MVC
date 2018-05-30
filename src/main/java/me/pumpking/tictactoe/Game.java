@@ -6,6 +6,7 @@ import me.pumpking.tictactoe.controllers.BoardController;
 import me.pumpking.tictactoe.controllers.GameController;
 import me.pumpking.tictactoe.controllers.GameViewController;
 import me.pumpking.tictactoe.models.Board;
+import me.pumpking.tictactoe.models.GameState;
 import me.pumpking.tictactoe.views.GameView;
 
 public class Game extends Application {
@@ -14,7 +15,8 @@ public class Game extends Application {
     private BoardController boardController;
     private GameViewController viewController;
 
-    private static final int SIZE = 3;
+    public static final int SIZE = 3;
+    public static final GameState INITIAL_STATE = GameState.X_TURN;
 
     @Override
     public void init() {
@@ -26,6 +28,7 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) {
         viewController.showGUI(primaryStage);
+        gameController.setAndShowGameState(INITIAL_STATE);
     }
 
     public GameController getGameController() {
