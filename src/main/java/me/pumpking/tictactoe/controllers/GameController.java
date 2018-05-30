@@ -46,7 +46,7 @@ public class GameController extends Controller {
     }
 
     private boolean isGameDrawn() {
-
+        return false;
     }
 
     public void handleFieldSelection(int index) {

@@ -28,6 +28,7 @@ public class BoardTest {
         assertThat(board.getIndexesSelectedByX()).isEmpty();
         assertThat(board.getIndexesSelectedByO()).isEmpty();
         assertThat(board.getWinningCombinations()).hasSize(GameTest.SIZE * 2 + 2);
+        assertThat(board.getAllIndexes()).hasSize(GameTest.SIZE * GameTest.SIZE);
     }
 
     @Test(expected = IllegalArgumentException.class)

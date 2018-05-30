@@ -11,6 +11,7 @@ public class Board {
 
     private int size;
     private Field[] fields;
+    private Set<Integer> allIndexes;
     private Set<Integer> indexesSelectedByX;
     private Set<Integer> indexesSelectedByO;
     private List<Set<Integer>> winningCombinations;
@@ -23,6 +24,7 @@ public class Board {
         this.indexesSelectedByX = new HashSet<>();
         this.indexesSelectedByO = new HashSet<>();
         this.winningCombinations = new ArrayList<>();
+        this.allIndexes = IntStream.range(0, fields.length).boxed().collect(Collectors.toSet());
 
         clear();
         populateWinningPositions();
@@ -79,6 +81,10 @@ public class Board {
 
     public List<Set<Integer>> getWinningCombinations() {
         return winningCombinations;
+    }
+
+    public Set<Integer> getAllIndexes() {
+        return allIndexes;
     }
 
 }
