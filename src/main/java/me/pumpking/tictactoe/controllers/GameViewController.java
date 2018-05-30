@@ -21,6 +21,10 @@ public class GameViewController extends Controller implements EventHandler<Actio
         view.showGUI(stage);
     }
 
+    public void clear() {
+        view.clear();
+    }
+
     @Override
     public void handle(ActionEvent event) {
         if (!(event.getSource() instanceof Button)) return;

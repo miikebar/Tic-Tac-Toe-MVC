@@ -27,4 +27,10 @@ public class GameViewControllerTest {
         verify(view).showGUI(stage);
     }
 
+    @Test
+    public void clear() {
+        controller.clear();
+        verify(view).clear();
+    }
+
 }
