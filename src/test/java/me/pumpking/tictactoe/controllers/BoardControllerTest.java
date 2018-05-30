@@ -22,12 +22,6 @@ public class BoardControllerTest {
     }
 
     @Test
-    public void getField() {
-        controller.getField(0);
-        verify(board).getField(0);
-    }
-
-    @Test
     public void setFieldSelectedBy() {
         controller.setFieldSelectedBy(0, Field.X);
         verify(board).setFieldSelectedBy(0, Field.X);
@@ -46,9 +40,21 @@ public class BoardControllerTest {
     }
 
     @Test
+    public void getAvailableIndexes() {
+        controller.getAvailableIndexes();
+        verify(board).getAvailableIndexes();
+    }
+
+    @Test
     public void getWinningCombinations() {
         controller.getWinningCombinations();
         verify(board).getWinningCombinations();
+    }
+
+    @Test
+    public void clear() {
+        controller.clear();
+        verify(board).clear();
     }
 
 }

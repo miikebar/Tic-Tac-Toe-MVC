@@ -1,17 +1,23 @@
 package me.pumpking.tictactoe.views;
 
+import com.google.common.base.Preconditions;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import me.pumpking.tictactoe.models.Field;
+import me.pumpking.tictactoe.models.GameState;
 
 public class GameView {
 
     private int size;
     private Label status;
+    private GridPane fields;
     private EventHandler<ActionEvent> listener;
 
     private static final String BUTTON_NORMAL_STYLE = "-fx-font: 24 monospaced; -fx-font-weight: bold; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;";
@@ -27,7 +33,6 @@ public class GameView {
 
     public void showGUI(Stage stage) {
         stage.setTitle("Tic Tac Toe");
-        stage.setResizable(false);
 
         BorderPane controls = new BorderPane();
         controls.setStyle("-fx-padding: 10;");
@@ -43,7 +48,7 @@ public class GameView {
         controls.setLeft(status);
         controls.setRight(reset);
 
-        GridPane fields = new GridPane();
+        fields = new GridPane();
 
         for (int i = 0; i < size; i++) {
             ColumnConstraints cc = new ColumnConstraints();
@@ -76,6 +81,31 @@ public class GameView {
 
         stage.setScene(new Scene(root, 400, 400));
         stage.show();
+    }
+
+    public void clear() {
+        ObservableList<Node> buttons = fields.getChildren();
+
+        for (int i = 0; i < buttons.size(); i++) {
+            Button fieldButton = (Button) buttons.get(i);
+            fieldButton.setText(" ");
+            fieldButton.setDisable(false);
+            fieldButton.setStyle(BUTTON_NORMAL_STYLE);
+        }
+    }
+
+    public void showState(GameState state) {
+        status.setText(state.getValue());
+    }
+
+    public void setFieldSelectedBy(int index, Field field) {
+        Preconditions.checkArgument(index >= 0 && index < size * size, "Invalid field index");
+        Preconditions.checkArgument(field != null, "Cannot display null field");
+
+        Button fieldButton = (Button) fields.getChildren().get(index);
+        fieldButton.setDisable(true);
+        fieldButton.setStyle(BUTTON_DISABLED_STYLE);
+        fieldButton.setText(field.getValue());
     }
 
 }

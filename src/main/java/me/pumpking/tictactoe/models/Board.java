@@ -13,6 +13,7 @@ public class Board {
     private Field[] fields;
     private Set<Integer> indexesSelectedByX;
     private Set<Integer> indexesSelectedByO;
+    private List<Integer> availableIndexes;
     private List<Set<Integer>> winningCombinations;
 
     public Board(int size) {
@@ -31,6 +32,7 @@ public class Board {
     public void clear() {
         indexesSelectedByX.clear();
         indexesSelectedByO.clear();
+        availableIndexes = IntStream.range(0, fields.length).boxed().collect(Collectors.toList());
 
         for (int i = 0; i < size * size; i++) {
             fields[i] = Field.EMPTY;
@@ -52,21 +54,13 @@ public class Board {
         return fields;
     }
 
-    public Field getField(int index) {
-        Preconditions.checkArgument(index >= 0 && index < size, "Invalid field index");
-        return fields[index];
-    }
-
     public void setFieldSelectedBy(int index, Field type) {
-        Preconditions.checkArgument(index >= 0 && index < size, "Invalid field index");
+        Preconditions.checkArgument(index >= 0 && index < size * size, "Invalid field index");
         Preconditions.checkArgument(type == Field.X || type == Field.O, "Cannot mark field as selected for type EMPTY");
 
         fields[index] = type;
+        availableIndexes.remove(availableIndexes.indexOf(index));
         (type == Field.X ? indexesSelectedByX : indexesSelectedByO).add(index);
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public Set<Integer> getIndexesSelectedByX() {
@@ -79,6 +73,10 @@ public class Board {
 
     public List<Set<Integer>> getWinningCombinations() {
         return winningCombinations;
+    }
+
+    public List<Integer> getAvailableIndexes() {
+        return availableIndexes;
     }
 
 }

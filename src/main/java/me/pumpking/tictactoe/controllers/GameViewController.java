@@ -1,10 +1,13 @@
 package me.pumpking.tictactoe.controllers;
 
+import com.google.common.base.Preconditions;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import me.pumpking.tictactoe.Game;
+import me.pumpking.tictactoe.models.Field;
+import me.pumpking.tictactoe.models.GameState;
 import me.pumpking.tictactoe.views.GameView;
 
 public class GameViewController extends Controller implements EventHandler<ActionEvent> {
@@ -18,7 +21,21 @@ public class GameViewController extends Controller implements EventHandler<Actio
     }
 
     public void showGUI(Stage stage) {
+        Preconditions.checkArgument(stage != null, "Cannot build GUI with null Stage");
         view.showGUI(stage);
+    }
+
+    void clear() {
+        view.clear();
+    }
+
+    void showState(GameState state) {
+        Preconditions.checkArgument(state != null, "Cannot display null game state");
+        view.showState(state);
+    }
+
+    void setFieldSelectedBy(int index, Field field) {
+        view.setFieldSelectedBy(index, field);
     }
 
     @Override
@@ -27,10 +44,11 @@ public class GameViewController extends Controller implements EventHandler<Actio
         Button button = (Button) event.getSource();
 
         if (button.getId() != null && button.getId().equalsIgnoreCase("reset")) {
-            // TODO: reset the game
+            game.getGameController().reset();
+
         } else {
             int index = (int) button.getProperties().get("index");
-            // TODO: set field
+            game.getGameController().handleFieldSelection(index);
         }
 
         event.consume();

@@ -16,24 +16,28 @@ public class BoardController extends Controller {
         this.board = board;
     }
 
-    public Field getField(int index) {
-        return board.getField(index);
-    }
-
-    public void setFieldSelectedBy(int index, Field field) {
+    void setFieldSelectedBy(int index, Field field) {
         board.setFieldSelectedBy(index, field);
     }
 
-    public Set<Integer> getIndexesSelectedByX() {
+    Set<Integer> getIndexesSelectedByX() {
         return board.getIndexesSelectedByX();
     }
 
-    public Set<Integer> getIndexesSelectedByO() {
+    Set<Integer> getIndexesSelectedByO() {
         return board.getIndexesSelectedByO();
     }
 
-    public List<Set<Integer>> getWinningCombinations() {
+    List<Integer> getAvailableIndexes() {
+        return board.getAvailableIndexes();
+    }
+
+    List<Set<Integer>> getWinningCombinations() {
         return board.getWinningCombinations();
+    }
+
+    void clear() {
+        board.clear();
     }
 
 }

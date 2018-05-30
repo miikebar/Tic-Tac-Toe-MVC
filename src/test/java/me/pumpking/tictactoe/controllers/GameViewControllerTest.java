@@ -2,6 +2,8 @@ package me.pumpking.tictactoe.controllers;
 
 import javafx.stage.Stage;
 import me.pumpking.tictactoe.Game;
+import me.pumpking.tictactoe.models.Field;
+import me.pumpking.tictactoe.models.GameState;
 import me.pumpking.tictactoe.views.GameView;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +27,34 @@ public class GameViewControllerTest {
         Stage stage = mock(Stage.class);
         controller.showGUI(stage);
         verify(view).showGUI(stage);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void showGUINull() {
+        controller.showGUI(null);
+    }
+
+    @Test
+    public void clear() {
+        controller.clear();
+        verify(view).clear();
+    }
+
+    @Test
+    public void showState() {
+        controller.showState(GameState.X_TURN);
+        verify(view).showState(GameState.X_TURN);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void showStateNull() {
+        controller.showState(null);
+    }
+
+    @Test
+    public void setFieldSelectedBy() {
+        controller.setFieldSelectedBy(0, Field.X);
+        verify(view).setFieldSelectedBy(0, Field.X);
     }
 
 }
