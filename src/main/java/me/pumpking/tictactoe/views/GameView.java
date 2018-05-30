@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import me.pumpking.tictactoe.models.GameState;
 
 public class GameView {
 
@@ -90,6 +91,10 @@ public class GameView {
             button.setDisable(false);
             button.setStyle(BUTTON_NORMAL_STYLE);
         }
+    }
+
+    public void showState(GameState state) {
+        status.setText(state.getValue());
     }
 
 }
