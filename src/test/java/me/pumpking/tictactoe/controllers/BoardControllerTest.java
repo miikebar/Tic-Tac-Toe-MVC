@@ -46,6 +46,12 @@ public class BoardControllerTest {
     }
 
     @Test
+    public void getAllIndexes() {
+        controller.getAllIndexes();
+        verify(board).getAllIndexes();
+    }
+
+    @Test
     public void getWinningCombinations() {
         controller.getWinningCombinations();
         verify(board).getWinningCombinations();

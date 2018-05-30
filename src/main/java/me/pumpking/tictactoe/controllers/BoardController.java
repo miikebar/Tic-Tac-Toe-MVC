@@ -32,6 +32,10 @@ public class BoardController extends Controller {
         return board.getIndexesSelectedByO();
     }
 
+    public Set<Integer> getAllIndexes() {
+        return board.getAllIndexes();
+    }
+
     public List<Set<Integer>> getWinningCombinations() {
         return board.getWinningCombinations();
     }
