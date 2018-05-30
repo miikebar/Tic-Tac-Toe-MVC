@@ -25,16 +25,16 @@ public class GameViewController extends Controller implements EventHandler<Actio
         view.showGUI(stage);
     }
 
-    public void clear() {
+    void clear() {
         view.clear();
     }
 
-    public void showState(GameState state) {
+    void showState(GameState state) {
         Preconditions.checkArgument(state != null, "Cannot display null game state");
         view.showState(state);
     }
 
-    public void setFieldSelectedBy(int index, Field field) {
+    void setFieldSelectedBy(int index, Field field) {
         view.setFieldSelectedBy(index, field);
     }
 

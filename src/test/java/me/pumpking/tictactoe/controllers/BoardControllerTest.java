@@ -22,12 +22,6 @@ public class BoardControllerTest {
     }
 
     @Test
-    public void getField() {
-        controller.getField(0);
-        verify(board).getField(0);
-    }
-
-    @Test
     public void setFieldSelectedBy() {
         controller.setFieldSelectedBy(0, Field.X);
         verify(board).setFieldSelectedBy(0, Field.X);
@@ -46,9 +40,9 @@ public class BoardControllerTest {
     }
 
     @Test
-    public void getAllIndexes() {
-        controller.getAllIndexes();
-        verify(board).getAllIndexes();
+    public void getAvailableIndexes() {
+        controller.getAvailableIndexes();
+        verify(board).getAvailableIndexes();
     }
 
     @Test

@@ -16,7 +16,7 @@ public class GameController extends Controller {
         super(game);
     }
 
-    public void reset() {
+    void reset() {
         setAndShowGameState(Game.INITIAL_STATE);
         game.getViewController().clear();
         game.getBoardController().clear();
@@ -28,7 +28,7 @@ public class GameController extends Controller {
         game.getViewController().showState(state);
     }
 
-    public void setAndShowField(int index, Field type) {
+    private void setAndShowField(int index, Field type) {
         game.getBoardController().setFieldSelectedBy(index, type);
         game.getViewController().setFieldSelectedBy(index, type);
     }
@@ -46,10 +46,10 @@ public class GameController extends Controller {
     }
 
     private boolean isGameDrawn() {
-        return false;
+        return game.getBoardController().getAvailableIndexes().isEmpty();
     }
 
-    public void handleFieldSelection(int index) {
+    void handleFieldSelection(int index) {
         switch (state) {
             case X_TURN:
                 setAndShowField(index, Field.X);
@@ -68,8 +68,6 @@ public class GameController extends Controller {
         }
 
     }
-
-
 
     @VisibleForTesting GameState getState() {
         return state;

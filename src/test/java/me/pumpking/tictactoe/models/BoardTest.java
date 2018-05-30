@@ -28,7 +28,7 @@ public class BoardTest {
         assertThat(board.getIndexesSelectedByX()).isEmpty();
         assertThat(board.getIndexesSelectedByO()).isEmpty();
         assertThat(board.getWinningCombinations()).hasSize(GameTest.SIZE * 2 + 2);
-        assertThat(board.getAllIndexes()).hasSize(GameTest.SIZE * GameTest.SIZE);
+        assertThat(board.getAvailableIndexes()).hasSize(GameTest.SIZE * GameTest.SIZE);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -41,6 +41,7 @@ public class BoardTest {
         board.clear();
         assertThat(board.getIndexesSelectedByX()).isEmpty();
         assertThat(board.getIndexesSelectedByO()).isEmpty();
+        assertThat(board.getAvailableIndexes()).hasSize(GameTest.SIZE * GameTest.SIZE);
         Arrays.stream(board.getFields()).forEach(field -> assertThat(field).isEqualTo(Field.EMPTY));
     }
 
@@ -90,17 +91,6 @@ public class BoardTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getFieldWithInvalidIndex() {
-        board.getField(-1);
-    }
-
-    @Test
-    public void getField() {
-        board.getFields()[1] = Field.X;
-        assertThat(board.getField(1)).isEqualTo(Field.X);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void setFieldSelectedByWithInvalidCoordinates() {
         board.setFieldSelectedBy(-1, Field.X);
     }
@@ -121,6 +111,7 @@ public class BoardTest {
         board.setFieldSelectedBy(selectedIndex, Field.X);
         assertThat(board.getFields()[selectedIndex]).isEqualTo(Field.X);
         assertThat(board.getIndexesSelectedByX()).contains(selectedIndex);
+        assertThat(board.getAvailableIndexes()).doesNotContain(selectedIndex);
     }
 
 }

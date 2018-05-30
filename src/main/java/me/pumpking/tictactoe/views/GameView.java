@@ -33,7 +33,6 @@ public class GameView {
 
     public void showGUI(Stage stage) {
         stage.setTitle("Tic Tac Toe");
-        stage.setResizable(false);
 
         BorderPane controls = new BorderPane();
         controls.setStyle("-fx-padding: 10;");
@@ -100,7 +99,7 @@ public class GameView {
     }
 
     public void setFieldSelectedBy(int index, Field field) {
-        Preconditions.checkArgument(index >= 0 && index < size, "Invalid field index");
+        Preconditions.checkArgument(index >= 0 && index < size * size, "Invalid field index");
         Preconditions.checkArgument(field != null, "Cannot display null field");
 
         Button fieldButton = (Button) fields.getChildren().get(index);
