@@ -5,7 +5,8 @@ public enum GameState {
     O_TURN("Player O's turn"),
     X_WINS("Player X wins the game!"),
     O_WINS("Player O wins the game!"),
-    DRAW("It's a draw!");
+    DRAW("It's a draw!"),
+    PROCESSING("Processing...");
 
     private String value;
 

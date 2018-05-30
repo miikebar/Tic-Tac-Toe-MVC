@@ -1,5 +1,6 @@
 package me.pumpking.tictactoe.views;
 
+import com.google.common.base.Preconditions;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import me.pumpking.tictactoe.models.Field;
 import me.pumpking.tictactoe.models.GameState;
 
 public class GameView {
@@ -86,15 +88,25 @@ public class GameView {
         ObservableList<Node> buttons = fields.getChildren();
 
         for (int i = 0; i < buttons.size(); i++) {
-            Button button = (Button) buttons.get(i);
-            button.setText(" ");
-            button.setDisable(false);
-            button.setStyle(BUTTON_NORMAL_STYLE);
+            Button fieldButton = (Button) buttons.get(i);
+            fieldButton.setText(" ");
+            fieldButton.setDisable(false);
+            fieldButton.setStyle(BUTTON_NORMAL_STYLE);
         }
     }
 
     public void showState(GameState state) {
         status.setText(state.getValue());
+    }
+
+    public void setFieldSelectedBy(int index, Field field) {
+        Preconditions.checkArgument(index >= 0 && index < size, "Invalid field index");
+        Preconditions.checkArgument(field != null, "Cannot display null field");
+
+        Button fieldButton = (Button) fields.getChildren().get(index);
+        fieldButton.setDisable(true);
+        fieldButton.setStyle(BUTTON_DISABLED_STYLE);
+        fieldButton.setText(field.getValue());
     }
 
 }

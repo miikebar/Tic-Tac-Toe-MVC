@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import me.pumpking.tictactoe.Game;
+import me.pumpking.tictactoe.models.Field;
 import me.pumpking.tictactoe.models.GameState;
 import me.pumpking.tictactoe.views.GameView;
 
@@ -33,6 +34,10 @@ public class GameViewController extends Controller implements EventHandler<Actio
         view.showState(state);
     }
 
+    public void setFieldSelectedBy(int index, Field field) {
+        view.setFieldSelectedBy(index, field);
+    }
+
     @Override
     public void handle(ActionEvent event) {
         if (!(event.getSource() instanceof Button)) return;
@@ -43,7 +48,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
 
         } else {
             int index = (int) button.getProperties().get("index");
-            // TODO: set field
+            game.getGameController().handleFieldSelection(index);
         }
 
         event.consume();

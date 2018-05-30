@@ -2,6 +2,7 @@ package me.pumpking.tictactoe.controllers;
 
 import javafx.stage.Stage;
 import me.pumpking.tictactoe.Game;
+import me.pumpking.tictactoe.models.Field;
 import me.pumpking.tictactoe.models.GameState;
 import me.pumpking.tictactoe.views.GameView;
 import org.junit.Before;
@@ -48,6 +49,12 @@ public class GameViewControllerTest {
     @Test(expected = IllegalArgumentException.class)
     public void showStateNull() {
         controller.showState(null);
+    }
+
+    @Test
+    public void setFieldSelectedBy() {
+        controller.setFieldSelectedBy(0, Field.X);
+        verify(view).setFieldSelectedBy(0, Field.X);
     }
 
 }
